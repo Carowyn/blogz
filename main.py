@@ -19,9 +19,9 @@ class BlogHandler(webapp2.RequestHandler):
             Get all posts by a specific user, ordered by creation date (descending).
             The user parameter will be a User object.
         """
-
         # TODO - filter the query so that only posts by the given user
-        return None
+        query = Post.all().filter('author', user).order('-created')
+        return query.fetch(limit=limit, offset=offset)
 
     def get_user_by_name(self, username):
         """ Get a user object from the db, based on their username """
@@ -144,20 +144,20 @@ class NewPostHandler(BlogHandler):
             id = post.key().id()
             self.redirect("/blog/%s" % id)
         else:
-            error = "we need both a title and a body!"
+            error = "We need both a title and a body!"
             self.render_form(title, body, error)
 
 class ViewPostHandler(BlogHandler):
 
     def get(self, id):
         """ Render a page with post determined by the id (via the URL/permalink) """
-
+        username = self.get_user_by_name(id)
         post = Post.get_by_id(int(id))
         if post:
             t = jinja_env.get_template("post.html")
             response = t.render(post=post)
         else:
-            error = "there is no post with id %s" % id
+            error = "There is no post with id %s" % id
             t = jinja_env.get_template("404.html")
             response = t.render(error=error)
 
@@ -223,7 +223,7 @@ class SignupHandler(BlogHandler):
         has_error = False
 
         if existing_user:
-            errors['username_error'] = "A user with that username already exists"
+            errors['username_error'] = "A user with that username already exists."
             has_error = True
         elif (username and password and verify and (email is not None) ):
 
@@ -238,16 +238,16 @@ class SignupHandler(BlogHandler):
             has_error = True
 
             if not username:
-                errors['username_error'] = "That's not a valid username"
+                errors['username_error'] = "That's not a valid username."
 
             if not password:
-                errors['password_error'] = "That's not a valid password"
+                errors['password_error'] = "That's not a valid password."
 
             if not verify:
-                errors['verify_error'] = "Passwords don't match"
+                errors['verify_error'] = "Passwords don't match."
 
             if email is None:
-                errors['email_error'] = "That's not a valid email"
+                errors['email_error'] = "That's not a valid email."
 
         if has_error:
             t = jinja_env.get_template("signup.html")
