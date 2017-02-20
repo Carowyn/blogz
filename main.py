@@ -76,7 +76,6 @@ class BlogIndexHandler(BlogHandler):
 
     def get(self, username=""):
         """ """
-
         # If request is for a specific page, set page number and offset accordingly
         page = self.request.get("page")
         offset = 0
@@ -87,6 +86,7 @@ class BlogIndexHandler(BlogHandler):
             page = 1
 
         # Fetch posts for all users, or a specific user, depending on request parameters
+        # username = ""
         if username:
             user = self.get_user_by_name(username)
             posts = self.get_posts_by_user(user, self.page_size, offset)
@@ -151,11 +151,12 @@ class ViewPostHandler(BlogHandler):
 
     def get(self, id):
         """ Render a page with post determined by the id (via the URL/permalink) """
-        username = self.get_user_by_name(id)
         post = Post.get_by_id(int(id))
+        user = post.author
+        username = user.username
         if post:
             t = jinja_env.get_template("post.html")
-            response = t.render(post=post)
+            response = t.render(post=post, username=username)
         else:
             error = "There is no post with id %s" % id
             t = jinja_env.get_template("404.html")

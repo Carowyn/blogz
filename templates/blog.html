@@ -2,43 +2,56 @@
 
 {% block content %}
 
-<h1>blog posts!</h1>
+<h1>Blog Posts!</h1>
 
 {% for post in posts %}
 
 <h2><a href="/blog/{{ post.key().id() }}">{{ post.title }}</a></h2>
 <pre>{{ post.body }}</pre>
 <!-- TODO add author w/ link to author's blog page -->
-<p id="by">Written By: <a href="/blog/{{ post.key().id().username }}"> {{ post.key().id().username }}</a></p>
+{% set user = post.author %}
+{% set username = user.username %}
+
+<p id="by">Written By: <a href="/blog/{{ username }}"> {{ username }}</a></p>
+
+<hr>
 
 {% endfor %}
 
+<br>
+<br>
+<br>
+
 {% if username %}
     {% if prev_page %}
-    <a href="/blog/{{ username }}?page={{ prev_page }}">&lt; <<<\Previous</a>
+    <a class="pn" href="/blog/{{ username }}?page={{ prev_page }}">&lt;&lt;&lt; Previous</a>
     {% endif %}
 
     {% if prev_page and next_page %}
-    &nbsp;&nbsp; | &nbsp;&nbsp;
+    <span class="pn">&nbsp;&nbsp; | &nbsp;&nbsp;</span>
     {% endif %}
 
     {% if next_page %}
-    <a href="/blog/{{ username }}?page={{ next_page }}">next>>> &gt;</a>
+    <a class="pn" href="/blog/{{ username }}?page={{ next_page }}">Next &gt;&gt;&gt;</a>
     {% endif %}
 {% endif %}
 
 {% if not username %}
     {% if prev_page %}
-    <a href="/blog?page={{ prev_page }}">&lt; <<<\Previous</a>
+    <a class="pn" href="/blog?page={{ prev_page }}">&lt;&lt;&lt;Previous</a>
     {% endif %}
 
     {% if prev_page and next_page %}
-    &nbsp;&nbsp; | &nbsp;&nbsp;
+    <span class="pn">&nbsp;&nbsp; | &nbsp;&nbsp;</span>
     {% endif %}
 
     {% if next_page %}
-    <a href="/blog?page={{ next_page }}">next>>> &gt;</a>
+    <a class="pn" href="/blog?page={{ next_page }}">Next &gt;&gt;&gt;</a>
     {% endif %}
 {% endif %}
+
+<br>
+<br>
+<br>
 
 {% endblock %}

@@ -1,17 +1,27 @@
 body {
-    font-family: sans-serif;
+    font-family: "Averia Libre", cursive;
     width: 800px;
     margin: 0 auto;
     padding: 10px;
+    background: url('http://vignette2.wikia.nocookie.net/dragonballzroleplaying/images/0/02/Dark-purple-brick-wall-texture_(1).jpg/revision/latest?cb=20131001003507');#ebb209
+    color: #ffb700;
+}
+
+h1 {
+    color: #009994;
+    font-size: 2.5em;
 }
 
 .error {
-    color: red;
+    color: #ed2a2a;
+    font-size: 1.5em;
 }
 
 label {
     display: block;
     font-size: 20px;
+    font-weight: bold;
+    color: #ffb700;
 }
 
 input[type=text],
@@ -19,14 +29,19 @@ input[type=password],
 input[type=email] {
     width: 400px;
     font-size: 20px;
+    font-family: "Averia Libre", cursive;
     padding: 2px;
+    background-color: #121110;
+    color: #fbf7e5;
 }
 
 textarea {
     width: 400px;
-    height: 200px;
+    height: 300px;
     font-size: 17px;
-    font-family: monospace;
+    font-family: "Averia Libre", cursive;
+    background-color: #121110;
+    color: #fbf7e5;
 }
 
 input[type=submit] {
@@ -39,21 +54,26 @@ hr {
 
 .post + .post {
     margin-top: 20px;
+    color: #ffb700;
+
 }
 
 .post-title {
     font-weight: bold;
-    font-size: 20px;
+    font-size: 1.5em;
+    color: #ffe03e;
 }
 
 .post-body {
     margin: 0;
-    font-size: 17px;
+    font-size: 1.4em;
+    color: #ffb700;
 }
 
 .post-author {
     font-style: italic;
-    font-size: 12px;
+    font-size: 1.2em;
+    color: #ffb700;
 }
 
 nav ul {
@@ -65,8 +85,93 @@ nav ul li {
     list-style: none;
     display: inline-block;
     margin-right: 15px;
+    color: #6bfffa;
 }
 
 nav #user-account {
     float: right;
+}
+
+a {
+    color: #f0951d;
+    text-decoration:none;
+}
+
+a:hover {
+    color: #6bfffa;
+}
+
+p {
+    color: #ffb700;
+}
+
+#by {
+    color: #ffb700;
+}
+
+pre {
+    color: #ffb700;
+    font-size: 1.2em;
+    max-width: 80%;
+    white-space: pre-wrap;
+}
+
+ul {
+    color: #ffb700;
+    list-style-type: circle;
+}
+
+#title {
+    color: #ffb700;
+    font-size: 1.3em;
+}
+
+#body {
+    background-color: #121110;
+    color: #fbf7e5;
+    font-size: 1.2em;
+}
+
+div {
+    color: #ffb700;
+    max-width: 80%;
+}
+
+#index {
+    font-size: 1.5em;
+}
+
+.navigate a {
+    font-size: 1.1em;
+    color: #6bfffa;
+}
+
+.navigate a:hover {
+    color: #f0951d;
+}
+
+.pn {
+    font-size: 1.2em;
+    color: #6bfffa;
+}
+
+.pn:hover {
+    color: #f0951d;
+}
+
+tr {
+    padding: 10px;
+}
+
+td {
+    padding: 10px;
+}
+
+table {
+    padding: 10px;
+}
+
+#submit {
+    margin: auto;
+    text-align: center;
 }
